@@ -34,8 +34,21 @@ export function Tickets(props: TicketsProps) {
         title: 'Is Completed',
         dataIndex: 'completed',
         render: (value: boolean) => {
-          return <Checkbox checked={value} />;
+          return <Checkbox checked={value} disabled />;
         },
+        onFilter: (value: unknown, record: Ticket) => {
+          return record.completed === value;
+        },
+        filters: [
+          {
+            text: 'Complete',
+            value: true,
+          },
+          {
+            text: 'Uncomplete',
+            value: false,
+          },
+        ],
       },
       {
         title: 'Assign',
